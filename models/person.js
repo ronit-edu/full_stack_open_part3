@@ -8,8 +8,22 @@ console.log(url);
 mongoose.connect(url);
 
 const person_schema = new mongoose.Schema({
-    name: String,
-    number: String,
+    name: {
+        type: String,
+        minLength: 3,
+        required: true
+    },
+    number: {
+        type: String,
+        minLength: 8,
+        required: true,
+        validate: {
+            validator: (n) => {
+                return /^[0-9]([0-9][0-9]|[0-9])-[0-9]+$/.test(n);
+            },
+            message: "not a valid phone number"
+        }
+    },
 });
 
 person_schema.set("toJSON", {
