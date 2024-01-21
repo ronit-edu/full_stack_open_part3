@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.static("dist"))
 app.use(express.json());
 
-morgan.token('req_body', (req, res) => JSON.stringify(req.body));
+morgan.token('req_body', (req) => JSON.stringify(req.body));
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :req_body'));
 
 let persons = [
@@ -70,7 +70,7 @@ app.post("/api/persons", (request, response, next) => {
         name: person.name,
         number: person.number
     });
-    new_person.save().then(result => {
+    new_person.save().then(() => {
         response.json(new_person);
     })
     .catch(error => next(error));
