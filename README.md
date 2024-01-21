@@ -1,2 +1,2 @@
 ## Server URL
-https://fs-phonebook-ijge.onrender.com/api/persons/
+https://fs-phonebook-ijge.onrender.com
